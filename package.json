@@ -4,9 +4,10 @@
   "description": "Backend for fyle project",
   "main": "./build/index.js",
   "scripts": {
+    "tsc": "tsc",
     "prestart": "npm run build",
     "start": "node ./build/index.js",
-    "build": "tsc",
+    "build": "npm run tsc",
     "build:watch": "tsc -w",
     "dev": "nodemon src/index.ts",
     "test": "jest --watchAll --no-cache --verbose --detectOpenHandles"
