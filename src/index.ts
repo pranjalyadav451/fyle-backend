@@ -1,6 +1,6 @@
 import express, { Response, Request, NextFunction } from "express";
 import HttpError from "./models/httpError";
-import router from "./routes/routes";
+import { repoLanguagesRouter, userDetailsRouter } from "./routes/routes";
 import { NOT_FOUND } from "./utils/globals";
 
 const app = express();
@@ -22,7 +22,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/users", router);
+app.use("/users", userDetailsRouter);
+app.use("/repos", repoLanguagesRouter);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   const error = new HttpError(NOT_FOUND, "Could not find this route.");

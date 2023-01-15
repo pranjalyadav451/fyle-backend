@@ -9,8 +9,13 @@ import {
 } from "../utils/globals";
 import { Repository } from "../utils/types/response-types";
 import HttpError from "../models/httpError";
+import { NextFunction } from "express";
 
-export const getRepositoryList = async (req: Request, res: Response) => {
+export const getRepositoryList = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { username } = req.params;
   let { page, per_page } = req.query;
 
@@ -33,7 +38,7 @@ export const getRepositoryList = async (req: Request, res: Response) => {
           } as Repository)
       ),
     });
-  } catch (err) {
-    return new HttpError(INTERNAL_SERVER_ERROR, "Internal Server Error");
+  } catch (err: any) {
+    return next(new HttpError(INTERNAL_SERVER_ERROR, err.response.statusText));
   }
 };

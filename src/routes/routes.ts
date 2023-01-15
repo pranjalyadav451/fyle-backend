@@ -1,9 +1,12 @@
 import { Router } from "express";
+import { getRepositoryLanguages } from "../controller/repoLanguageController";
 import { getRepositoryList } from "../controller/repoListController";
 import { getUserDetails } from "../controller/userController";
 
-const router = Router();
-router.get("/:username", getUserDetails);
-router.get("/:username/repos", getRepositoryList);
+const userDetailsRouter = Router();
+const repoLanguagesRouter = Router();
+userDetailsRouter.get("/:username", getUserDetails);
+userDetailsRouter.get("/:username/repos", getRepositoryList);
+repoLanguagesRouter.get("/:username/:repo/languages", getRepositoryLanguages);
 
-export default router;
+export { userDetailsRouter, repoLanguagesRouter };

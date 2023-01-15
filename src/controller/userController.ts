@@ -1,6 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 import axios from "axios";
-import { API_URL, NOT_FOUND, OK } from "../utils/globals";
+import {
+  API_URL,
+  BAD_REQUEST,
+  INTERNAL_SERVER_ERROR,
+  NOT_FOUND,
+  OK,
+} from "../utils/globals";
 import { User } from "../utils/types/response-types";
 import HttpError from "../models/httpError";
 
@@ -30,7 +36,7 @@ export const getUserDetails = async (
         public_gists: result.public_gists,
       } as User,
     });
-  } catch (err) {
-    return next(new HttpError(NOT_FOUND, "User not found"));
+  } catch (err: any) {
+    return next(new HttpError(INTERNAL_SERVER_ERROR, err.response.statusText));
   }
 };
