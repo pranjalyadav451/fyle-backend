@@ -10,7 +10,7 @@ import {
 import { Repository } from "../utils/types/response-types";
 import HttpError from "../models/httpError";
 import { NextFunction } from "express";
-
+import { axiosInstance } from "../utils/axios.setup";
 export const getRepositoryList = async (
   req: Request,
   res: Response,
@@ -23,7 +23,7 @@ export const getRepositoryList = async (
   per_page = (per_page ? per_page : DEFAULT_PER_PAGE).toString();
 
   try {
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${API_URL}/users/${username}/repos?page=${page}&per_page=${per_page}`
     );
     return res.status(OK).json({

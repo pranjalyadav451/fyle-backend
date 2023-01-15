@@ -7,5 +7,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": false
-  }
+  },
+  "include": ["./"],
+  "exclude": ["node_modules/","build/","coverage/"]
 }
