@@ -4,7 +4,8 @@
   "description": "Backend for fyle project",
   "main": "build/index.js",
   "scripts": {
-    "start": "npm run build && node build/index.js",
+    "prestart": "npm run build",
+    "start": "node build/index.js",
     "build": "tsc",
     "build:watch": "tsc -w",
     "dev": "nodemon src/index.ts",
