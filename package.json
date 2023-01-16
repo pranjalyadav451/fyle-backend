@@ -2,7 +2,7 @@
   "name": "fyle-backend",
   "version": "1.0.0",
   "description": "Backend for fyle project",
-  "main": "./build/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
     "prestart": "npm run build",
